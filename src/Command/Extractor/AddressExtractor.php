@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Command\Extractor;
-
 
 use Symfony\Component\Console\Input\InputInterface;
 use Zored\Dmns\Model\Address;
@@ -16,5 +16,4 @@ class AddressExtractor
 
         return new Address($host, $port);
     }
-
 }

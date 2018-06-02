@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Server\Resolver\IpMapper;
@@ -17,12 +18,11 @@ class OneOfIpMapper implements IpMapperInterface
     {
         foreach ($this->ipMappers as $mapper) {
             $ip = $mapper->getIp($domain);
-            if ($ip !== null) {
+            if (null !== $ip) {
                 return $ip;
             }
         }
 
         return null;
     }
-
 }

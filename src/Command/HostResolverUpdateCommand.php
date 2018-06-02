@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Command;
-
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -76,11 +76,10 @@ HELP
 
         if (!$success) {
             $this->logger->error('Could not update resolver (no permissions?)');
+
             return 1;
         }
 
         return 0;
     }
-
-
 }

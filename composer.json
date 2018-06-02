@@ -1,4 +1,5 @@
 {
+    "name": "zored/dmns",
     "require": {
         "php": ">=7.2",
         "symfony/console": "^4.1",
@@ -12,16 +13,24 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "phpunit/phpunit": "^7.2"
+        "phpunit/phpunit": "^7.2",
+        "friendsofphp/php-cs-fixer": "^2.10",
+        "php-coveralls/php-coveralls": "^2.0",
+        "vlucas/phpdotenv": "^2.4"
     },
     "autoload": {
         "psr-4": {
             "Zored\\Dmns\\": "src/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload-dev": {
         "psr-4": {
             "Tests\\Zored\\Dmns\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }

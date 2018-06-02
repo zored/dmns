@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Host;
-
 
 use Zored\Dmns\Model\Address;
 
@@ -26,5 +26,4 @@ class EachDnsUpdater implements DnsUpdaterInterface
 
         return true;
     }
-
 }

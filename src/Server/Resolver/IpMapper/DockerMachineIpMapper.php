@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Server\Resolver\IpMapper;
-
 
 class DockerMachineIpMapper implements IpMapperInterface
 {
@@ -32,7 +32,7 @@ class DockerMachineIpMapper implements IpMapperInterface
     {
         $machine = \escapeshellarg($machine);
         exec("docker-machine ip $machine", $output, $exitCode);
-        if ($exitCode !== 0) {
+        if (0 !== $exitCode) {
             return null;
         }
 

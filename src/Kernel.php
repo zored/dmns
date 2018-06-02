@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns;
-
 
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -25,13 +25,11 @@ class Kernel extends BaseKernel
 
     public function getRootDir()
     {
-        return __DIR__.'/..';
+        return __DIR__ . '/..';
     }
 
     public function getName()
     {
         return 'dmns';
     }
-
-
 }

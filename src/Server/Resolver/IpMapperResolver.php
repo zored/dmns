@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Server\Resolver;
-
 
 use Psr\Log\LoggerInterface;
 use yswery\DNS\RecordTypeEnum;
@@ -44,7 +44,7 @@ class IpMapperResolver implements ResolverInterface
     private function getItem(array $item): ?array
     {
         $type = $item['qtype'];
-        if ($type !== RecordTypeEnum::TYPE_A) {
+        if (RecordTypeEnum::TYPE_A !== $type) {
             return null;
         }
 

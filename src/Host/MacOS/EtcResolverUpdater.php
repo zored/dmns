@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Host\MacOS;
-
 
 use League\Flysystem\FilesystemInterface;
 use Zored\Dmns\Host\DnsUpdaterInterface;
@@ -29,12 +29,10 @@ class EtcResolverUpdater implements DnsUpdaterInterface
 nameserver {$address->getHost()}
 port {$address->getPort()}
 RESOLVER;
-
     }
 
     private function getPath(string $tld): string
     {
         return "/etc/resolver/$tld";
     }
-
 }

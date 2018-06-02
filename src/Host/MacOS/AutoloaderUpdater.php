@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Host\MacOS;
-
 
 use League\Flysystem\FilesystemInterface;
 use Zored\Dmns\Host\DnsUpdaterInterface;
@@ -33,7 +33,8 @@ class AutoloaderUpdater implements DnsUpdaterInterface
         }
 
         exec("launchctl load $path", $output, $exitCode);
-        return $exitCode === 0;
+
+        return 0 === $exitCode;
     }
 
     private function getContent(string $name, Address $address, string $tld): string
@@ -66,12 +67,10 @@ class AutoloaderUpdater implements DnsUpdaterInterface
 </dict>
 </plist>
 XML;
-
     }
 
     private function getPath(string $name): string
     {
         return "~/Library/LaunchAgents/$name.plist";
     }
-
 }

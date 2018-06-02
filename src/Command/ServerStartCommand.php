@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zored\Dmns\Command;
-
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -32,7 +32,6 @@ class ServerStartCommand extends Command
         $this->addressExtractor = $addressExtractor;
         $this->logger = $logger;
     }
-
 
     protected function configure(): void
     {

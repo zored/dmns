@@ -1,13 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Zored\Dmns\Server\Resolver;
 
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use yswery\DNS\RecordTypeEnum;
 use Zored\Dmns\Server\Resolver\IpMapper\IpMapperInterface;
 use Zored\Dmns\Server\Resolver\IpMapperResolver;
-use PHPUnit\Framework\TestCase;
 
 class IpMapperResolverTest extends TestCase
 {
@@ -34,7 +35,7 @@ class IpMapperResolverTest extends TestCase
         $result = $this->resolver->getAnswer([
             // Wrong type:
             [
-                'qtype' => RecordTypeEnum::TYPE_AAAA
+                'qtype' => RecordTypeEnum::TYPE_AAAA,
             ],
 
             // Unknown name:
@@ -47,7 +48,7 @@ class IpMapperResolverTest extends TestCase
             [
                 'qtype' => RecordTypeEnum::TYPE_A,
                 'qname' => 'def.net.',
-                'qclass' => 0x0001 // IN / Internet: http://www.zytrax.com/books/dns/ch15/#qclass
+                'qclass' => 0x0001, // IN / Internet: http://www.zytrax.com/books/dns/ch15/#qclass
             ],
         ]);
 
@@ -60,7 +61,7 @@ class IpMapperResolverTest extends TestCase
                     'type' => RecordTypeEnum::TYPE_A,
                     'value' => $ip,
                 ],
-            ]
+            ],
         ], $result);
     }
 

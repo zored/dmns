@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Zored\Dmns\Command;
@@ -62,5 +63,4 @@ class HostResolverUpdateCommandTest extends TestCase
             $this->createMock(OutputInterface::class)
         ));
     }
-
 }

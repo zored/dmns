@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Zored\Dmns\Server\Resolver\IpMapper;
 
-use Zored\Dmns\Server\Resolver\IpMapper\ConfigIpMapper;
 use PHPUnit\Framework\TestCase;
+use Zored\Dmns\Server\Resolver\IpMapper\ConfigIpMapper;
 
 class ConfigIpMapperTest extends TestCase
 {
