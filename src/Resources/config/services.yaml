@@ -1,0 +1,56 @@
+parameters:
+    kernel.secret: 'noSecretsHere'
+    dmns.ips_by_domains: {}
+    dmns.machine_aliases:
+        portal-api: ifunny-api
+    dmns.command: '%kernel.root_dir%/bin/console'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Zored\Dmns\:
+        resource: '../../*'
+        exclude: '../../{Entity,Migrations,Tests,Kernel,Bundle.php}'
+
+    # Filesystem:
+    League\Flysystem\FilesystemInterface:
+        alias: League\Flysystem\Filesystem
+    League\Flysystem\Filesystem: ~
+    League\Flysystem\AdapterInterface:
+        alias: League\Flysystem\Adapter\Local
+    League\Flysystem\Adapter\Local:
+        arguments:
+            $root: '/'
+
+    Zored\Dmns\Host\DnsUpdaterInterface:
+          alias: Zored\Dmns\Host\EachDnsUpdater
+
+    Zored\Dmns\Host\EachDnsUpdater:
+        arguments:
+          - '@Zored\Dmns\Host\MacOS\AutoloaderUpdater'
+          - '@Zored\Dmns\Host\MacOS\EtcResolverUpdater'
+    Zored\Dmns\Host\MacOS\AutoloaderUpdater:
+        arguments:
+          $command: '%dmns.command%'
+
+    # Resolver:
+    yswery\DNS\ResolverInterface:
+        alias: Zored\Dmns\Server\Resolver\IpMapperResolver
+    Zored\Dmns\Server\Resolver\IpMapper\IpMapperInterface:
+        alias: Zored\Dmns\Server\Resolver\IpMapper\OneOfIpMapper
+    Zored\Dmns\Server\Resolver\IpMapper\DockerMachineIpMapper:
+        arguments:
+          $aliases: '%dmns.machine_aliases%'
+    Zored\Dmns\Server\Resolver\IpMapper\OneOfIpMapper:
+        arguments:
+        - '@Zored\Dmns\Server\Resolver\IpMapper\ConfigIpMapper'
+        - '@Zored\Dmns\Server\Resolver\IpMapper\DockerMachineIpMapper'
+    Zored\Dmns\Server\Resolver\IpMapper\ConfigIpMapper:
+        arguments:
+            $ipsByDomains: '%dmns.ips_by_domains%'
+
+    Psr\Log\LoggerInterface:
+      alias: Symfony\Component\Console\Logger\ConsoleLogger
