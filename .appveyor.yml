@@ -4,7 +4,6 @@ shallow_clone: false
 clone_folder: C:\app
 environment:
   matrix:
-  - php_ver: 7.1.15
   - php_ver: 7.2.3
 cache:
 - '%APPDATA%\Composer'

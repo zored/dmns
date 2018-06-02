@@ -4,12 +4,7 @@ cache: {directories: [$HOME/.composer]}
 jobs:
   include:
     - &BASE
-      php: 7.1
+      php: 7.2
       install: [travis_retry make ci-install]
       script: [make ci-test || travis_terminate 1]
-
-    - <<: *BASE
-      php: 7.2
-
-    - <<: *BASE
       after_success: [travis_retry make ci-coverage]
